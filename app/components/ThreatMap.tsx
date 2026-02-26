@@ -208,6 +208,7 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
 
     Promise.all([
       import("leaflet"),
+      
     ]).then(([{ default: L }]) => {
       if (!mounted || !containerRef.current || mapRef.current) return;
 
@@ -381,7 +382,7 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
 
       {/* ── Vignette — dark edges ── */}
       <div
-        className="absolute inset-0 z-[400] pointer-events-none"
+        className="absolute inset-0 z-400 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse at 50% 60%, transparent 30%, rgba(20,0,0,0.65) 100%)",
@@ -390,7 +391,7 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
 
       {/* ── Scanline overlay ── */}
       <div
-        className="absolute inset-0 z-[401] pointer-events-none"
+        className="absolute inset-0 z-401 pointer-events-none"
         style={{
           backgroundImage:
             "repeating-linear-gradient(0deg,rgba(0,255,65,0.025) 0px,rgba(0,255,65,0.025) 1px,transparent 1px,transparent 3px)",
@@ -399,7 +400,7 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
 
       {/* ── LIVE badge (top-left) ── */}
       <div
-        className="absolute top-3 left-3 z-[500] flex items-center gap-2 px-3 py-1.5
+        className="absolute top-3 left-3 z-500 flex items-center gap-2 px-3 py-1.5
                    rounded-md backdrop-blur-sm text-xs font-mono"
         style={{
           background: "rgba(0,10,0,0.85)",
@@ -430,7 +431,7 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
 
       {/* ── Legend (bottom-left) ── */}
       <div
-        className="absolute bottom-4 left-3 z-[500] p-3 rounded-md backdrop-blur-sm text-xs space-y-1.5"
+        className="absolute bottom-4 left-3 z-500 p-3 rounded-md backdrop-blur-sm text-xs space-y-1.5"
         style={{
           background: "rgba(0,8,0,0.88)",
           border: `1px solid ${MATRIX_GREEN}33`,
@@ -488,7 +489,7 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
       {/* ── Top Attack Origins (top-right) ── */}
       {topCountries.length > 0 && (
         <div
-          className="absolute top-3 right-3 z-[500] w-44 p-3 rounded-md backdrop-blur-sm"
+          className="absolute top-3 right-3 z-500 w-44 p-3 rounded-md backdrop-blur-sm"
           style={{
             background: "rgba(0,8,0,0.88)",
             border: `1px solid ${MATRIX_GREEN}33`,
@@ -513,7 +514,7 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
                     style={{ fontFamily: "monospace" }}
                   >
                     <span
-                      className="truncate max-w-[96px] text-[11px]"
+                      className="truncate max-w-24 text-[11px]"
                       style={{ color: "#86efac" }}
                     >
                       {country}

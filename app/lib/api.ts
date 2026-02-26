@@ -150,4 +150,11 @@ export const api = {
   /** SSE stream URL — pass directly to useSSE() */
   streamUrl: (): string =>
     `${API_BASE || window.location.origin}/api/dashboard/stream`,
+
+  /** WebSocket URL — pass directly to useWebSocket() */
+  wsUrl: (): string => {
+    const base = API_BASE || window.location.origin;
+    const wsBase = base.replace(/^http/, "ws");
+    return `${wsBase}/api/ws/threats`;
+  },
 };

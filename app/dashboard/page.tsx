@@ -53,7 +53,16 @@ type Tab = (typeof TABS)[number];
 
 // ─── Dashboard ────────────────────────────────────────────────────────────────
 export default function Dashboard() {
-  const [tab, setTab]               = useState<Tab>("Overview");
+  const [tab, setTab]               = useState<Tab>(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get("tab");
+      if (tabParam && TABS.includes(tabParam as Tab)) {
+        return tabParam as Tab;
+      }
+    }
+    return "Overview";
+  });
   const [loading, setLoading]       = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
@@ -122,6 +131,12 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
+
+  // Auto-refresh every 10 seconds
+  useEffect(() => {
+    const interval = setInterval(() => fetchAll(true), 5000);
+    return () => clearInterval(interval);
+  }, [fetchAll]);
 
   // Reset live badge when user views Overview
   useEffect(() => {

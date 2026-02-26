@@ -9852,25 +9852,37 @@
             container2.style.width = '290px';
         }
         
-        // // Replace background images
-        // const bgContainer = document.querySelector('.framer-1manc6d');
-        // if (bgContainer) {
-        //     const bgImg = bgContainer.querySelector('[data-framer-background-image-wrapper="true"] img');
-        //     if (bgImg && !bgImg.src.includes('/threatviz-bg.svg')) {
-        //         bgImg.src = '/threatviz-bg.svg';
-        //         bgImg.srcset = '';
-        //     }
-        // }
+        // Replace background images
+        const bgContainer = document.querySelector('.framer-1manc6d');
+        if (bgContainer) {
+            const bgImg = bgContainer.querySelector('[data-framer-background-image-wrapper="true"] img');
+            if (bgImg && !bgImg.src.includes('/threatviz-bg.svg')) {
+                bgImg.src = '/threatviz-bg.svg';
+                bgImg.srcset = '';
+            }
+        }
         
         // Replace Secuby text everywhere
-        document.querySelectorAll('.framer-styles-preset-1vqvgyp, .framer-styles-preset-h6yhxg, .framer-styles-preset-17q1um2, .framer-styles-preset-2gw67p, .framer-styles-preset-1lvaryc').forEach(el => {
+        document.querySelectorAll('.framer-styles-preset-1vqvgyp, .framer-styles-preset-h6yhxg, .framer-styles-preset-17q1um2, .framer-styles-preset-2gw67p, .framer-styles-preset-1lvaryc, .framer-styles-preset-4ui7oz').forEach(el => {
             if (el.textContent.includes('Secuby')) {
                 el.textContent = el.textContent.replace(/Secuby/g, 'ThreatViz');
             }
             if (el.textContent.includes('Redzone')) {
                 el.textContent = el.textContent.replace(/Redzone/g, 'Tech Terrorists,');
             }
+            if (el.textContent.includes('Get a Free Quote')) {
+                el.textContent = el.textContent.replace(/Get a Free Quote/g, 'Login');
+                const button = el.closest('a');
+                if (button && !button.dataset.loginRedirect) {
+                    button.dataset.loginRedirect = 'true';
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.location.href = '/dashboard';
+                    });
+                }
+            }
         });
+        
     }
     
     const bodyObserver = new MutationObserver(replaceLogo);
