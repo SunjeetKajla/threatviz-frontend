@@ -8,7 +8,7 @@ export default function AgentOverlay() {
   
   const conversation = useConversation({
     agentId: process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID!,
-    onToolCall: (toolName, parameters) => handleToolCall(toolName, parameters),
+    onToolCall: (toolName: string, parameters: any) => handleToolCall(toolName, parameters),
     clientTools: agentTools,
   });
 
