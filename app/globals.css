@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030712;
+  --foreground: #f9fafb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ── Threat map: marker pulse ───────────────────────────────────────────────── */
+@keyframes tvPulse {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  70%  { transform: scale(2.4); opacity: 0;   }
+  100% { transform: scale(2.4); opacity: 0;   }
+}
+
+/* ── Threat map: LIVE indicator blink ───────────────────────────────────────── */
+@keyframes tvBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ── Threat map: animated attack arc (flowing dashes source → target) ────────── */
+@keyframes tvFlowLine {
+  from { stroke-dashoffset: 0;   }
+  to   { stroke-dashoffset: -17; }
+}
+
+/* ── Leaflet zoom control — matrix green skin ───────────────────────────────── */
+.leaflet-control-zoom a {
+  background: rgba(0, 8, 0, 0.88) !important;
+  color: #00ff41 !important;
+  border-color: rgba(0, 255, 65, 0.25) !important;
+  text-shadow: 0 0 6px #00ff41 !important;
+  font-family: monospace !important;
+  transition: background 0.15s;
+}
+.leaflet-control-zoom a:hover {
+  background: rgba(0, 255, 65, 0.12) !important;
+  color: #00ff9f !important;
+}
+.leaflet-bar {
+  border: 1px solid rgba(0, 255, 65, 0.2) !important;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.1) !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+}
+
+/* ── Leaflet dark tooltip ────────────────────────────────────────────────────── */
+.tv-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.tv-tooltip::before {
+  display: none !important;
+}
+
+/* Remove Leaflet's default white tooltip box */
+.leaflet-tooltip {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Hide default Leaflet attribution */
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Thin scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
