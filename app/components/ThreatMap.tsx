@@ -208,7 +208,6 @@ export default function ThreatMap({ threats, liveCount, connected }: Props) {
 
     Promise.all([
       import("leaflet"),
-      import("leaflet/dist/leaflet.css")
     ]).then(([{ default: L }]) => {
       if (!mounted || !containerRef.current || mapRef.current) return;
 
